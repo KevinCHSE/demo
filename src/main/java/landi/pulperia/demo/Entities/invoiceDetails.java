@@ -1,0 +1,90 @@
+package landi.pulperia.demo.Entities;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+@Entity 
+public class invoiceDetails {
+
+    @Id 
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Integer idInvoiceDetails;
+
+    @ManyToOne 
+    @JoinColumn(name="invoice_id")
+    private Invoice invoice; 
+
+    @ManyToOne
+    private Products porduct;
+
+    private Integer price;
+    private Integer unitPrice;
+    private Integer amount;
+    public invoiceDetails() {
+    }
+
+    public invoiceDetails(Integer amount, Integer idInvoiceDetails, Invoice invoice, Products porduct, Integer price, Integer unitPrice) {
+        this.amount = amount;
+        this.idInvoiceDetails = idInvoiceDetails;
+        this.invoice = invoice;
+        this.porduct = porduct;
+        this.price = price;
+        this.unitPrice = unitPrice;
+    }
+
+    public Integer getIdInvoiceDetails() {
+        return idInvoiceDetails;
+    }
+
+    public void setIdInvoiceDetails(Integer idInvoiceDetails) {
+        this.idInvoiceDetails = idInvoiceDetails;
+    }
+
+    public Invoice getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
+    }
+
+    public Products getPorduct() {
+        return porduct;
+    }
+
+    public void setPorduct(Products porduct) {
+        this.porduct = porduct;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
+    public Integer getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(Integer unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public Integer getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Integer amount) {
+        this.amount = amount;
+    }
+    
+
+    
+
+}
