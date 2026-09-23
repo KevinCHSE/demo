@@ -3,11 +3,13 @@ package landi.pulperia.demo.Service.LoginService;
 import java.util.List;
 
 import org.hibernate.internal.util.Optional;
+import org.springframework.stereotype.Service;
 
 import landi.pulperia.demo.Entities.Login.Roles;
 import landi.pulperia.demo.Interfaces.roleServiceInterface;
 import landi.pulperia.demo.Repositories.LoginRepository.RolesRepository;
 
+@Service 
 public class rolesService implements roleServiceInterface {
 
     private final RolesRepository rolesRepository;
