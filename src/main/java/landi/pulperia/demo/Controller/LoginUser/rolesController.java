@@ -27,7 +27,7 @@ public class rolesController {
     }
     
 
-    @PostMapping("path")
+    @PostMapping("/saveRole")
     public ResponseEntity<?> saveRole(@Valid @RequestBody Roles role, BindingResult result) {
          if(result.hasFieldErrors()){
             return validation(result);
