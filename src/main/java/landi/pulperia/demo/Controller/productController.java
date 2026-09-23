@@ -47,7 +47,7 @@ public class productController {
         return service.needStock();
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN','USER')")
     @PostMapping("/NewProduct")
     public ResponseEntity<?> saveProduct(@Valid @RequestBody Products product , BindingResult result) {
          if(result.hasFieldErrors()){

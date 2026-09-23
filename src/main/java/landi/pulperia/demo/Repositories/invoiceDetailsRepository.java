@@ -9,11 +9,11 @@ import org.springframework.data.repository.query.Param;
 import landi.pulperia.demo.Entities.invoiceDetails;
 
 public interface invoiceDetailsRepository extends CrudRepository<invoiceDetails, Integer>{
-    @Query(value="select sum(price) as total from pulperia_landi.invoice_details", nativeQuery=true)
+    @Query(value="select sum(price) as total from invoice_details", nativeQuery=true)
     int getTotal();
 
 
-    @Query(value="select * from pulperia_landi.invoice_details where invoice_id= :id", nativeQuery=true)
+    @Query(value="select * from invoice_details where invoice_id= :id", nativeQuery=true)
     List<invoiceDetails> getDetailsByInvoice(@Param("id") int invoice );
 
 }

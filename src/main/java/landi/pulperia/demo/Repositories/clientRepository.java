@@ -7,6 +7,6 @@ import landi.pulperia.demo.Entities.Client;
 
 public interface  clientRepository extends  CrudRepository<Client, String>{
     
-    @Query(value="select count(id) from pulperia_landi.client where active=1", nativeQuery=true)
+    @Query(value="select count(id) from client where active=1", nativeQuery=true)
     public int getClientCount();   
 }
