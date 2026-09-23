@@ -13,7 +13,6 @@ public class Roles {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @NotNull 
     private Integer id;
 
     @NotNull 
