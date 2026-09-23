@@ -16,6 +16,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 import landi.pulperia.demo.Security.Filter.JWTAuthenticationFilter;
@@ -57,13 +58,22 @@ public class springSecurityConfig {
     @Bean 
         CorsConfigurationSource corsConfigurationSource(){
             CorsConfiguration config = new  CorsConfiguration();
-            config.setAllowedOriginPatterns(List.of("https://landi-angular.vercel.app"));
-            config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
-            config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
-      
+            // Usa wildcard pattern para permitir el dominio principal Y cualquier preview URL de Vercel (*.vercel.app)
+            config.setAllowedOriginPatterns(List.of(
+                "https://landi-angular.vercel.app", 
+                "https://*.vercel.app", 
+                "http://localhost:4200"
+            ));
+            
+            // Obligatorio: Agregar OPTIONS para que pase el preflight del navegador
+            config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+            
+            // Permitir todas las cabeceras estándar
+            config.setAllowedHeaders(List.of("*"));
+            
             config.setAllowCredentials(true);
-          
-            org.springframework.web.cors.UrlBasedCorsConfigurationSource source= new org.springframework.web.cors.UrlBasedCorsConfigurationSource();
+
+            UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
             source.registerCorsConfiguration("/**", config);
             return source;
         
