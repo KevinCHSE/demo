@@ -57,7 +57,7 @@ public class springSecurityConfig {
     @Bean 
         CorsConfigurationSource corsConfigurationSource(){
             CorsConfiguration config = new  CorsConfiguration();
-            config.setAllowedOriginPatterns(List.of("http://localhost:4200"));
+            config.setAllowedOriginPatterns(List.of("https://landi-angular.vercel.app"));
             config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
             config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
       

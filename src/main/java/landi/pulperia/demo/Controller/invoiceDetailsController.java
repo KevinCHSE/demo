@@ -1,6 +1,5 @@
 package landi.pulperia.demo.Controller;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,7 +9,7 @@ import landi.pulperia.demo.Service.invoiceDetailsService;
 
 @RestController 
 @RequestMapping("/apiInoviceDetails")
-@CrossOrigin(origins="http://localhost:4200")
+
 public class invoiceDetailsController {
 
     private final invoiceDetailsService service;
