@@ -45,7 +45,7 @@ public class springSecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http){
         return http.authorizeHttpRequests(auth->
             auth
-            .anyRequest().authenticated())
+            .anyRequest().permitAll())
             .addFilter(new JWTAuthenticationFilter(authenticationManager()))
             .addFilterBefore(new JwtValidationFilter(authenticationManager()),BasicAuthenticationFilter.class)
             .csrf(config->config.disable())
