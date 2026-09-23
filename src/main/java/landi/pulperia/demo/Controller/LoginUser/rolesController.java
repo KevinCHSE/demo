@@ -12,29 +12,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
-import landi.pulperia.demo.Entities.Login.User;
-import landi.pulperia.demo.Service.LoginService.UserService;
+import landi.pulperia.demo.Entities.Login.Roles;
+import landi.pulperia.demo.Service.LoginService.rolesService;
 
 
 @RestController 
-@RequestMapping("/User")
-public class userController {
+@RequestMapping("/apiRoles")
+public class rolesController {
 
-    private final UserService service;
+    private final rolesService service;
 
-    public userController(UserService service) {
+    public rolesController(rolesService service) {
         this.service = service;
     }
+    
 
-
-    @PostMapping("/saveUser")
-    public ResponseEntity<?> postMethodName(@Valid @RequestBody User user, BindingResult result) {
-
-        if(result.hasFieldErrors()){
+    @PostMapping("path")
+    public ResponseEntity<?> saveRole(@Valid @RequestBody Roles role, BindingResult result) {
+         if(result.hasFieldErrors()){
             return validation(result);
         }
-
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(service.save(user)) ;
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(service.save(role));
     }
 
 
@@ -47,5 +45,4 @@ public class userController {
         return ResponseEntity.badRequest().body(errors);
     }
     
-
 }
