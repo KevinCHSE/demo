@@ -19,19 +19,19 @@ public class invoiceDetails {
     private Invoice invoice; 
 
     @ManyToOne
-    private Products porduct;
-
+    @JoinColumn(name = "product_id")
+    private Products product;
     private Integer price;
     private Integer unitPrice;
     private Integer amount;
     public invoiceDetails() {
     }
 
-    public invoiceDetails(Integer amount, Integer idInvoiceDetails, Invoice invoice, Products porduct, Integer price, Integer unitPrice) {
+    public invoiceDetails(Integer amount, Integer idInvoiceDetails, Invoice invoice, Products product, Integer price, Integer unitPrice) {
         this.amount = amount;
         this.idInvoiceDetails = idInvoiceDetails;
         this.invoice = invoice;
-        this.porduct = porduct;
+        this.product = product;
         this.price = price;
         this.unitPrice = unitPrice;
     }
@@ -52,12 +52,12 @@ public class invoiceDetails {
         this.invoice = invoice;
     }
 
-    public Products getPorduct() {
-        return porduct;
+    public Products getProduct() {
+        return product;
     }
 
-    public void setPorduct(Products porduct) {
-        this.porduct = porduct;
+    public void setProduct(Products product) {
+        this.product = product;
     }
 
     public Integer getPrice() {

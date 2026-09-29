@@ -10,5 +10,4 @@ public interface  invoiceServiceInterface {
     List<Invoice> invoiceList();
     Optional<Invoice> getInvoiceDetails(Integer id);
     Invoice save(InvoiceDTO invoiceDTO);
-    Optional<Invoice>delate(int id );
 }

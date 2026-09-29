@@ -46,6 +46,7 @@ public class springSecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http){
         return http.authorizeHttpRequests(auth->
             auth
+            .requestMatchers("/error").permitAll()
             .anyRequest().permitAll())
             .addFilter(new JWTAuthenticationFilter(authenticationManager()))
             .addFilterBefore(new JwtValidationFilter(authenticationManager()),BasicAuthenticationFilter.class)

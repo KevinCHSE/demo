@@ -1,7 +1,6 @@
 package landi.pulperia.demo.Entities;
 
 import jakarta.persistence.Entity;
-
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -19,22 +18,22 @@ public class Client {
 
     @NotEmpty
     @NotBlank
-    private String phone;
-    private Integer creditLimit;
-    private Integer balance;
+    private String phone; 
+    private Integer creditLimit=0;
+    private Integer usedCredit=0;
+    private Integer totalSpent=0;
     private boolean active=true;
 
     public Client() {
     }
 
-    public Client(String id, @NotEmpty @NotBlank String name, @NotEmpty @NotBlank String phone, Integer creditLimit,
-            Integer balance, boolean active) {
+    public Client(Integer Total, Integer balance, Integer creditLimit, String id, String name, String phone) {
+        this.totalSpent = Total;
+        this.usedCredit = balance;
+        this.creditLimit = creditLimit;
         this.id = id;
         this.name = name;
         this.phone = phone;
-        this.creditLimit = creditLimit;
-        this.balance = balance;
-        this.active = active;
     }
 
     public String getId() {
@@ -69,12 +68,20 @@ public class Client {
         this.creditLimit = creditLimit;
     }
 
-    public Integer getBalance() {
-        return balance;
+    public Integer getUsedCredit() {
+        return usedCredit;
     }
 
-    public void setBalance(Integer balance) {
-        this.balance = balance;
+    public void setUsedCredit(Integer balance) {
+        this.usedCredit = balance;
+    }
+
+    public Integer getTotalSpent() {
+        return totalSpent;
+    }
+
+    public void setTotalSpent(Integer Total) {
+        this.totalSpent = Total;
     }
 
     public boolean isActive() {
@@ -84,6 +91,8 @@ public class Client {
     public void setActive(boolean active) {
         this.active = active;
     }
+
+    
 
     
 }

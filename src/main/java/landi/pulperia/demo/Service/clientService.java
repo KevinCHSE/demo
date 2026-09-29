@@ -44,25 +44,16 @@ public class clientService implements clientServiceInterface{
         Optional<Client>optionalClient=repository.findById(id);
         if(optionalClient.isPresent()){
             Client newClient=optionalClient.get();
+            newClient.setId(Client.getId());
             newClient.setName(Client.getName());
             newClient.setPhone(Client.getPhone());
-            newClient.setId(Client.getId());
-            newClient.setBalance(Client.getBalance());
+            newClient.setUsedCredit(Client.getUsedCredit());
             newClient.setCreditLimit(Client.getCreditLimit());
             newClient.setActive(Client.isActive());
+            newClient.setTotalSpent(Client.getTotalSpent());
             return Optional.of(repository.save(newClient));
         }
         return optionalClient;
-    }
-
-    @Override
-    @Transactional
-    public Optional<Client> delate(String id) {
-        Optional<Client> optionalCliente=repository.findById(id);
-        optionalCliente.ifPresent(client->{
-            repository.delete(client);
-        });
-        return optionalCliente;
     }
 
     @Override

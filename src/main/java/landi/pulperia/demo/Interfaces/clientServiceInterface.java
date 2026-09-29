@@ -10,6 +10,5 @@ public interface clientServiceInterface {
     Optional<Client> getClient(String id);
     Client save(Client client);
     Optional<Client>update(Client Client, String id);
-    Optional<Client>delate(String id);
     int clientCount();
 }

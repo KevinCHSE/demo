@@ -53,7 +53,7 @@ public class clientController {
     }
 
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN','USER')")
     @PostMapping("/saveClient")
     public ResponseEntity<?>saveClient(@Valid @RequestBody Client client, BindingResult result) {
         if(result.hasFieldErrors()){
@@ -62,7 +62,7 @@ public class clientController {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(service.save(client));
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN','USER')")
     @PutMapping("/updateClient/{id}")
     public ResponseEntity<?>updateClient(@PathVariable String id, @Valid @RequestBody Client client, BindingResult result) {
         if(result.hasFieldErrors()){

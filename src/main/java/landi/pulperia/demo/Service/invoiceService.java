@@ -73,7 +73,7 @@ public class invoiceService implements invoiceServiceInterface{
             
             invoiceDetails invoiceDetails=new invoiceDetails();
             invoiceDetails.setInvoice(invoice);
-            invoiceDetails.setPorduct(product);
+            invoiceDetails.setProduct(product);
             invoiceDetails.setPrice( (product.getPrice()*item.getAmount()) );
             invoiceDetails.setUnitPrice(product.getPrice());
             invoiceDetails.setAmount(item.getAmount());
@@ -81,6 +81,9 @@ public class invoiceService implements invoiceServiceInterface{
             //invoice's total
             invoiceTotal+=invoiceDetails.getPrice();
 
+            if (product.getStock() < item.getAmount()) {
+                throw new IllegalArgumentException("Stock insuficiente para " + product.getName());
+            }
             //amount of products
             product.setStock(product.getStock()-item.getAmount());
 
@@ -91,9 +94,11 @@ public class invoiceService implements invoiceServiceInterface{
 
         if (invoice.getPayment().equals("Contado")) {
             invoice.setPaid(true);
+            client.setTotalSpent(client.getTotalSpent()+invoiceTotal);
         }else{
             invoice.setPaid(false);
-            client.setBalance(client.getBalance()+invoiceTotal);
+            client.setUsedCredit(client.getUsedCredit()+invoiceTotal);
+            client.setTotalSpent(client.getTotalSpent()+invoiceTotal);
         }
 
         return  invoice;
@@ -116,7 +121,7 @@ public class invoiceService implements invoiceServiceInterface{
 
             for (invoiceDetails item : details) {
                 PurchasesItem newItem = new PurchasesItem();
-                newItem.setItem(item.getPorduct().getName());
+                newItem.setItem(item.getProduct().getName());
                 newItem.setAmount(item.getAmount());
                 purchasesItemList.add(newItem);
 
@@ -140,15 +145,6 @@ public class invoiceService implements invoiceServiceInterface{
 
         return new PurchasesReportDTO(purchasesList, total, cash, onCredit);
         }
-
-
-
-
-    @Override
-    public Optional<Invoice> delate(int id) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
 
 
 

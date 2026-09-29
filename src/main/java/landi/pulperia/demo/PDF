@@ -1,0 +1,13 @@
+nombre de la tienda 
+fecha 
+saldo actual
+limite que se le fia 
+credito disponible
+total de las compras
+Abono
+ultimo pago
+los movimientos que hizo en las fechas pedidas
+
+Los movimientos y el total de compras corresponden únicamente al período del 21/09/2026 al 28/09/2026.
+ El saldo actual incluye todas las compras y abonos del cliente, incluso los anteriores o posteriores
+  a este período, por lo que puede ser mayor que la suma de los movimientos mostrados.
