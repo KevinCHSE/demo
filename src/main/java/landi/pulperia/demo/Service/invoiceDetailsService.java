@@ -1,5 +1,8 @@
 package landi.pulperia.demo.Service;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,7 +24,11 @@ public class invoiceDetailsService implements invoiceDetailsServiceInterface{
     @Override
     @Transactional(readOnly=true)
     public int getTotal() {
-        return repository.getTotal();
+        LocalDate today=LocalDate.now(ZoneId.of("America/Costa_Rica"));
+        LocalDate startDate=  today.withDayOfMonth(1);
+        System.out.println(startDate);
+        System.out.println(startDate.plusMonths(1));
+        return repository.getTotal(startDate, startDate.plusMonths(1));
     }
 
     

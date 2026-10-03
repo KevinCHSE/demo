@@ -2,13 +2,13 @@ package landi.pulperia.demo.Entities.Login;
 
 import java.util.List;
 
-import org.hibernate.annotations.ManyToAny;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import jakarta.persistence.UniqueConstraint;
@@ -44,7 +44,7 @@ public class User {
 
     private boolean enable;
 
-    @ManyToAny 
+    @ManyToMany(fetch = FetchType.EAGER) 
     @JoinTable(
         name="users_roles",
         joinColumns=@JoinColumn(name="user_id"),

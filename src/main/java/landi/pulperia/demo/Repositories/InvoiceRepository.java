@@ -14,7 +14,7 @@ public interface InvoiceRepository extends CrudRepository<Invoice, Integer> {
     @Query(value = """
         SELECT * FROM invoice
         WHERE client_id = :clientId
-        AND date BETWEEN :startDate AND :endDate
+        AND date BETWEEN :startDate AND :endDate order by date desc
         """, nativeQuery = true)
     List<Invoice> getReport(
         @Param("clientId") String clientId,

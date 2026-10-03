@@ -57,28 +57,28 @@ public class springSecurityConfig {
     }
 
     @Bean 
-        CorsConfigurationSource corsConfigurationSource(){
-            CorsConfiguration config = new  CorsConfiguration();
-            // Usa wildcard pattern para permitir el dominio principal Y cualquier preview URL de Vercel (*.vercel.app)
-            config.setAllowedOriginPatterns(List.of(
-                "https://landi-angular.vercel.app", 
-                "https://*.vercel.app", 
-                "http://localhost:4200"
-            ));
-            
-            // Obligatorio: Agregar OPTIONS para que pase el preflight del navegador
-            config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-            
-            // Permitir todas las cabeceras estándar
-            config.setAllowedHeaders(List.of("*"));
-            
-            config.setAllowCredentials(true);
-
-            UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-            source.registerCorsConfiguration("/**", config);
-            return source;
+    CorsConfigurationSource corsConfigurationSource(){
+        CorsConfiguration config = new  CorsConfiguration();
+        // Usa wildcard pattern para permitir el dominio principal Y cualquier preview URL de Vercel (*.vercel.app)
+        config.setAllowedOriginPatterns(List.of(
+            "https://landi-angular.vercel.app", 
+            "https://*.vercel.app", 
+            "http://localhost:4200"
+        ));
         
-        }
+        // Obligatorio: Agregar OPTIONS para que pase el preflight del navegador
+        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        
+        // Permitir todas las cabeceras estándar
+        config.setAllowedHeaders(List.of("*"));
+        
+        config.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
+        return source;
+    
+    }
 
         @Bean 
         FilterRegistrationBean<CorsFilter>corsFilter(){
