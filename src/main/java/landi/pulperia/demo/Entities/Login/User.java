@@ -1,6 +1,7 @@
 package landi.pulperia.demo.Entities.Login;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,7 +12,6 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
-import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -44,14 +44,13 @@ public class User {
 
     private boolean enable;
 
-    @ManyToMany(fetch = FetchType.EAGER) 
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-        name="users_roles",
-        joinColumns=@JoinColumn(name="user_id"),
-        inverseJoinColumns =@JoinColumn(name="roles_id"),
-        uniqueConstraints={@UniqueConstraint(columnNames={"user_id","roles_id"})}
-    ) 
-    private List<Roles>roles;
+        name = "users_roles",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "roles_id")
+    )
+    private Set<Roles> roles = new HashSet<>();
 
     @Transient
     private boolean Admin;
@@ -88,11 +87,11 @@ public class User {
         this.enable = enable;
     }
 
-    public List<Roles> getRoles() {
+    public Set<Roles> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Roles> roles) {
+    public void setRoles(Set<Roles> roles) {
         this.roles = roles;
     }
 
