@@ -1,6 +1,6 @@
 package landi.pulperia.demo.DTOs;
 
-import java.util.List;
+import java.util.Set;
 
 import landi.pulperia.demo.Entities.Login.Roles;
 import landi.pulperia.demo.Entities.Login.User;
@@ -16,7 +16,7 @@ public class UserDTO {
     private boolean enable;
 
 
-    private List<Roles>roles;
+    private Set<Roles>roles;
 
     
 
@@ -69,12 +69,12 @@ public class UserDTO {
     }
 
 
-    public List<Roles> getRoles() {
+    public Set<Roles> getRoles() {
         return roles;
     }
 
 
-    public void setRoles(List<Roles> roles) {
+    public void setRoles(Set<Roles> roles) {
         this.roles = roles;
     }
 

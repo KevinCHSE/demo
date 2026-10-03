@@ -1,8 +1,9 @@
 package landi.pulperia.demo.Service.LoginService;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -44,7 +45,7 @@ public class UserService implements UserServiceInterface{
     @Override
     public UserDTO save(User user) {
         Optional<Roles>optionalRole= rolesRepository.findByRole("ROLE_USER");
-        List<Roles>roles= new ArrayList<>();
+        Set<Roles>roles= new HashSet<>();
         optionalRole.ifPresent(role->roles.add(role));
 
         if(user.isAdmin()==true){
@@ -57,24 +58,5 @@ public class UserService implements UserServiceInterface{
 
         return new UserDTO(user);
     }
-
-    @Override
-    public Optional<UserDTO> getClient(String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getClient'");
-    }
-
-    @Override
-    public Optional<UserDTO> update(UserDTO userDTO, String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
-    }
-
-    @Override
-    public Optional<UserDTO> delate(String id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delate'");
-    }
-
 
 }
